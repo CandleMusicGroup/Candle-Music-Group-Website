@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: 🎯 Depoyu Klonla
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: ⚡ GitHub Pages için Setup
-        uses: actions/setup-node@v18
+        uses: actions/setup-node@v4  # En son stabil sürüm
 
       - name: 🚀 Web Sitesini Deploy Et
         uses: JamesIves/github-pages-deploy-action@v4
