@@ -3,9 +3,6 @@ name: Deploy Candle Music Group Website
 on:
   push:
     branches:
-      - main  # Ana branch'e push edildiğinde çalışır
-  pull_request:
-    branches:
       - main
 
 jobs:
@@ -17,18 +14,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: ⚡ Node.js Kurulumu
-        uses: actions/setup-node@v4  # EN GÜNCEL SÜRÜMÜ KULLANIYORUZ
+        uses: actions/setup-node@v4
         with:
-          node-version: 18  # Node.js 18 kullanıyoruz
+          node-version: 18
 
       - name: 📦 Bağımlılıkları Kur
-        run: npm install  # package.json içindeki bağımlılıkları yükler
+        run: npm install  # Bağımlılıkları yükler
 
       - name: 🚀 Web Sitesini Build Et
-        run: npm run build  # Eğer bir build komutu varsa (React, Vue gibi projeler için)
+        run: npm run build  # React, Vue, Next.js projeleri için
 
       - name: 📤 Web Sitesini Deploy Et
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # GitHub Pages için dağıtım yapılacak branch
-          folder: dist  # Eğer "build" klasörünün adı "dist" ise, burayı değiştir
+          branch: gh-pages
+          folder: build  # Eğer React/Vue kullanıyorsan build çıktısının olduğu klasörü eklemelisin
