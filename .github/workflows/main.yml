@@ -16,11 +16,19 @@ jobs:
       - name: 🎯 Depoyu Klonla
         uses: actions/checkout@v4
 
-      - name: ⚡ GitHub Pages için Setup
-        uses: actions/setup-node@v4  # En son stabil sürüm
+      - name: ⚡ Node.js Kurulumu
+        uses: actions/setup-node@v4  # EN GÜNCEL SÜRÜMÜ KULLANIYORUZ
+        with:
+          node-version: 18  # Node.js 18 kullanıyoruz
 
-      - name: 🚀 Web Sitesini Deploy Et
+      - name: 📦 Bağımlılıkları Kur
+        run: npm install  # package.json içindeki bağımlılıkları yükler
+
+      - name: 🚀 Web Sitesini Build Et
+        run: npm run build  # Eğer bir build komutu varsa (React, Vue gibi projeler için)
+
+      - name: 📤 Web Sitesini Deploy Et
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Deploy edilecek branch
-          folder: .  # Ana klasördeki dosyaları yayınla
+          branch: gh-pages  # GitHub Pages için dağıtım yapılacak branch
+          folder: dist  # Eğer "build" klasörünün adı "dist" ise, burayı değiştir
