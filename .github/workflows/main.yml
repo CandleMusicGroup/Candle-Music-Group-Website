@@ -1,0 +1,26 @@
+name: Deploy Candle Music Group Website
+
+on:
+  push:
+    branches:
+      - main  # Ana branch'e push edildiğinde çalışır
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🎯 Depoyu Klonla
+        uses: actions/checkout@v3
+
+      - name: ⚡ GitHub Pages için Setup
+        uses: actions/setup-node@v18
+
+      - name: 🚀 Web Sitesini Deploy Et
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Deploy edilecek branch
+          folder: .  # Ana klasördeki dosyaları yayınla
